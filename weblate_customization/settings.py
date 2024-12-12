@@ -16,9 +16,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # TODO: fix email server
-#EMAIL_HOST = 'mbox.freehostia.com'
-#EMAIL_PORT = 993
-#EMAIL_HOST_USER = 'translations@earthcomputer.net'
+EMAIL_HOST = 'smtp.eu.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'translations@earthcomputer.net'
 EMAIL_HOST_PASSWORD = env['EMAIL_HOST_PASSWORD']
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
