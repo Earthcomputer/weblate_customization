@@ -17,7 +17,7 @@ AUTHENTICATION_BACKENDS = (
 
 # TODO: fix email server
 EMAIL_HOST = 'smtp.eu.mailgun.org'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'translations@earthcomputer.net'
 EMAIL_HOST_PASSWORD = env['EMAIL_HOST_PASSWORD']
 EMAIL_USE_TLS = True
