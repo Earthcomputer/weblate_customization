@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block breadcrumbs %}
+  <li>
+    <a href="{% url 'contact' %}">{% trans "Contact" %}</a>
+  </li>
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="container">
+
+    <div class="alert alert-warning">
+      <ul>
+        <li>
+          {% if site_title != "Weblate" %}
+            {% blocktrans %}You can only contact administrators of {{ site_title }} server here.{% endblocktrans %}
+          {% else %}
+            {% blocktrans %}You can only contact administrators of the whole server here.{% endblocktrans %}
+          {% endif %}
+        </li>
+        {% if offer_hosting %}
+          <li>
+            {% blocktrans %}If you seek support for any other Weblate deployment than {{ site_title }}, please check support offerings at {{ weblate_link }} or use this form on the correct server.{% endblocktrans %}
+          </li>
+        {% endif %}
+        <li>
+          {% blocktrans with link_start='<a href="https://github.com/WeblateOrg/weblate/issues/new/choose">' link_end='</a>'  %}Weblate development ideas and questions can be sent to the {{ link_start }}Weblate issue tracker{{ link_end }}.{% endblocktrans %}
+        </li>
+      </ul>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Discord</h4>
+      </div>
+      <div class="panel-body">
+        <a href="">Joining the Discord</a> is the most effective way to contact me
+      </div>
+    </div>
+
+  </div>
+
+{% endblock %}
+

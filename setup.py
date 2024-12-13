@@ -9,6 +9,6 @@ setup(
     license="MIT",
     keywords="Weblate check",
     packages=["weblate_customization"],
-    package_data={"weblate_customization": ["static/**"]},
+    package_data={"weblate_customization": ["static/**", "templates/**"]},
 )
 
