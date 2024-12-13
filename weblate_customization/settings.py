@@ -15,7 +15,6 @@ AUTHENTICATION_BACKENDS = (
     'weblate.accounts.auth.WeblateUserBackend',
 )
 
-# TODO: fix email server
 EMAIL_HOST = 'smtp.eu.mailgun.org'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'translations@earthcomputer.net'
@@ -28,6 +27,12 @@ DEFAULT_FROM_EMAIL = 'translations@earthcomputer.net'
 SOCIAL_AUTH_GITHUB_KEY = env['AUTH_GITHUB_KEY']
 SOCIAL_AUTH_GITHUB_SECRET = env['AUTH_GITHUB_SECRET']
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
+GITHUB_CREDENTIALS = {
+    'api.github.com': {
+        'username': 'EarthAutoBot',
+        'token': env['EARTH_AUTO_BOT_TOKEN']
+    }
+}
 
 #REGISTRATION_OPEN = False
 
