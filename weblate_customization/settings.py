@@ -2,8 +2,8 @@ from os import environ as env
 from weblate.settings_docker import *
 
 ADMINS_CONTACT = ['burtonjae@hotmail.co.uk']
-DEFAULT_COMMITER_EMAIL = 'translations@earthcomputer.net'
-DEFAULT_COMMITER_NAME = 'Translations'
+DEFAULT_COMMITER_EMAIL = '100721925+EarthAutoBot@users.noreply.github.com'
+DEFAULT_COMMITER_NAME = 'EarthAutoBot'
 ENABLE_HTTPS = True
 GET_HELP_URL = 'https://discord.gg/Jg7Bun7'
 SIMPLIFY_LANGUAGES = False
