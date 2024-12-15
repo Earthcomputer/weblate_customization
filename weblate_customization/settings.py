@@ -47,4 +47,5 @@ CHECK_LIST += (
     'weblate_customization.checks.PercentSOnlyCheck',
     'weblate_customization.checks.PercentUnescapedCheck',
     'weblate_customization.checks.MixedIndexedFormatSpecifiersCheck',
+    'weblate_customization.checks.MismatchedFormatSpecifiersCheck'
 )
