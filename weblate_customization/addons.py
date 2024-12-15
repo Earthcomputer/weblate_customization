@@ -11,7 +11,7 @@ def try_compile(regex):
     except re.error:
         return re.compile('.*')
 
-def except_gap(a, b, groups):
+def expect_gap(a, b, groups):
     for group in groups:
         am = group.match(a)
         bm = group.match(b)
@@ -66,7 +66,7 @@ class JSONCustomizeAddonExt(JSONCustomizeAddon):
                     for i in range(len(kv)):
                         if i != 0:
                             result += ','
-                            if except_gap(kv[i - 1][0], kv[i][0], groups):
+                            if expect_gap(kv[i - 1][0], kv[i][0], groups):
                                 result += '\n'
                         result += '\n' + indent
                         result += super().encode(kv[i][0]) + ': ' + super().encode(kv[i][1])
