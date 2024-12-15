@@ -39,9 +39,9 @@ GITHUB_CREDENTIALS = {
 INSTALLED_APPS = tuple(['weblate_customization'] + list(INSTALLED_APPS))
 
 WEBLATE_ADDONS += (
-    'weblate_customization.addons.JSONCustomizeAddonExt'
+    'weblate_customization.addons.JSONCustomizeAddonExt',
 )
 
 CHECK_LIST += (
-    'weblate_customization.checks.LegacyFormattingCodeCheck'
+    'weblate_customization.checks.LegacyFormattingCodeCheck',
 )
