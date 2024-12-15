@@ -41,7 +41,7 @@ class PercentSOnlyCheck(TargetCheck):
         
         return format_html_join(mark_safe("<br />"), "{}", ((error,) for error in errors))
     
-    def get_illegal_format_codes(target):
+    def get_illegal_format_codes(self, target):
         for m in JAVA_MATCH.finditer(target.replace('%%', '')):
             if not ALLOWED_FORMATTING_CODES.fullmatch(m.group()):
                 yield m.group()
