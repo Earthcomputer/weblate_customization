@@ -2,7 +2,7 @@
 from weblate.checks.base import TargetCheck
 
 class LegacyFormattingCodeCheck(TargetCheck):
-    check_id = 'net.earthcomputer.legacy_formatting_code'
+    check_id = 'minecraft_legacy_formatting_code'
     name = 'Legacy Formatting Codes'
     description = 'Translation contains legacy formatting code. Apply formatting in code instead'
 
