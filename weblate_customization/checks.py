@@ -24,8 +24,8 @@ class PercentSOnlyCheck(TargetCheck):
     def check_single(self, source, target, unit):
         return not all((ALLOWED_FORMATTING_CODES.fullmatch(x.group()) for x in JAVA_MATCH.finditer(target.replace('%%', ''))))
 
-class UnescapedPercentCheck(TargetCheck):
-    check_id = 'unescaped_percent'
+class PercentUnescapedCheck(TargetCheck):
+    check_id = 'percent_unescaped'
     name = 'Unescaped percent'
     description = 'Translation contains unescaped "%"'
     default_disabled = True

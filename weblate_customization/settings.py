@@ -45,6 +45,6 @@ WEBLATE_ADDONS += (
 CHECK_LIST += (
     'weblate_customization.checks.LegacyFormattingCodeCheck',
     'weblate_customization.checks.PercentSOnlyCheck',
-    'weblate_customization.checks.UnescapedPercentCheck',
+    'weblate_customization.checks.PercentUnescapedCheck',
     'weblate_customization.checks.MixedIndexedFormatSpecifiersCheck',
 )
