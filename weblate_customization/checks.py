@@ -148,7 +148,8 @@ class MismatchedFormatSpecifiersCheck(TargetCheck):
                 if (i + 1) not in used_indexes:
                     yield f'Translation does not have a format specifier for index {i + 1}'
             for used_index in used_indexes:
-                yield f'Translation has format specifier "%{used_index}$s" which is not present in the source'
+                if used_index == 0 or used_index > num_specifiers_in_source:
+                    yield f'Translation has format specifier "%{used_index}$s" which is not present in the source'
         else:
             num_specifiers_in_target = len(ALLOWED_FORMAT_SPECIFIERS.findall(target))
             if num_specifiers_in_target < num_specifiers_in_source:
