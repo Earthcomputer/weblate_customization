@@ -21,7 +21,7 @@ def except_gap(a, b, groups):
         else:
             if bm is None:
                 return True
-            return a.groups() != b.groups()
+            return am.groups() != bm.groups()
         
     return False
 
