@@ -17,7 +17,7 @@ def validate_no_gap(value):
 class JSONCustomizeFormExt(JSONCustomizeForm):
     groups = forms.CharField(
         label='Groups', 
-        help_text='Semicolon-separated list of regexes of groups, within which to not add a gap. Capturing groups must be the same for there to be no gap', 
+        help_text='Semicolon-separated list of groups. Each group is specified by a regex which must match at the start of the translation key, and each member of the same group has the same values from the regex\'s capture groups', 
         required=True, 
         initial='.*', 
         validators=[validate_no_gap]

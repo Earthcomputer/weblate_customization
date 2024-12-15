@@ -11,6 +11,23 @@ def try_compile(regex):
     except re.error:
         return re.compile('.*')
 
+def except_gap(a, b, groups):
+    for group in groups:
+        am = group.match(a)
+        bm = group.match(b)
+        if am is None:
+            if bm is not None:
+                return True
+        else:
+            if bm is None:
+                return True
+            return a.groups() != b.groups()
+        
+    return False
+
+        
+        
+
 class JSONCustomizeAddonExt(JSONCustomizeAddon):
     name = 'net.earthcomputer.json.customize'
     verbose = 'Customize JSON output (extended)'
@@ -49,18 +66,8 @@ class JSONCustomizeAddonExt(JSONCustomizeAddon):
                     for i in range(len(kv)):
                         if i != 0:
                             result += ','
-                            group_num = None
-                            regex_groups = None
-                            for gn, group in enumerate(groups):
-                                m = group.fullmatch(kv[i][0])
-                                if m is not None:
-                                    group_num = gn
-                                    regex_groups = m.groups()
-                                    break
-                            if group_num is not None:
-                                m = group.fullmatch(kv[i - 1][0])
-                                if m is None or m.groups() != regex_groups:
-                                    result += '\n'
+                            if except_gap(kv[i - 1][0], kv[i][0], groups):
+                                result += '\n'
                         result += '\n' + indent
                         result += super().encode(kv[i][0]) + ': ' + super().encode(kv[i][1])
                     result += '\n}'
