@@ -12,7 +12,7 @@ class LegacyFormattingCodeCheck(TargetCheck):
     default_disabled = True
 
     def check_single(self, source, target, unit):
-        return '§' not in target
+        return '§' in target
 
 
 class PercentSOnlyCheck(TargetCheck):
@@ -34,8 +34,8 @@ class PercentUnescapedCheck(TargetCheck):
         target = target.replace('%%', '')
         for i in range(len(target)):
             if target[i] == '%' and not JAVA_MATCH.match(target, i):
-                return False
-        return True
+                return True
+        return False
 
 class MixedIndexedFormatSpecifiersCheck(TargetCheck):
     check_id = 'mixed_indexed_format_specifiers'
@@ -50,14 +50,14 @@ class MixedIndexedFormatSpecifiersCheck(TargetCheck):
         for m in JAVA_MATCH.finditer(target):
             m = ALLOWED_FORMATTING_CODES.fullmatch(m.group())
             if m is None:
-                return True # disallowed formatting code will trigger another check
+                return False # disallowed formatting code will trigger another check
             is_positional = m.group(1) is None
             if is_positional:
                 if not allow_positional:
-                    return False
+                    return True
                 allow_indexed = False
             else:
                 if not allow_indexed:
-                    return False
+                    return True
                 allow_positional = False
-        return True
+        return False
