@@ -131,7 +131,7 @@ class MismatchedFormatSpecifiersCheck(TargetCheck):
         source = source.replace('%%', '')
         target = target.replace('%%', '')
 
-        num_specifiers_in_source = len(ALLOWED_FORMAT_SPECIFIERS.finditer(source))
+        num_specifiers_in_source = len(ALLOWED_FORMAT_SPECIFIERS.findall(source))
         
         if target_style == IndexingStyle.INDEXED:
             used_indexes = set()
@@ -150,7 +150,7 @@ class MismatchedFormatSpecifiersCheck(TargetCheck):
             for used_index in used_indexes:
                 yield f'Translation has format specifier "%{used_index}$s" which is not present in the source'
         else:
-            num_specifiers_in_target = len(ALLOWED_FORMAT_SPECIFIERS.finditer(target))
+            num_specifiers_in_target = len(ALLOWED_FORMAT_SPECIFIERS.findall(target))
             if num_specifiers_in_target < num_specifiers_in_source:
                 yield f'Translation contains {num_specifiers_in_source - num_specifiers_in_target} fewer format specifiers than the source'
             elif num_specifiers_in_target > num_specifiers_in_source:
