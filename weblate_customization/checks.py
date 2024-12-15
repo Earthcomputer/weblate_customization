@@ -15,7 +15,7 @@ class IndexingStyle(Enum):
     NONE = 3 # no formatting codes
 
     @classmethod
-    def get_style(target):
+    def get_style(cls, target):
         target = target.replace('%%', '')
         style = IndexingStyle.NONE
         for m in JAVA_MATCH.finditer(target):
@@ -68,7 +68,7 @@ class PercentSOnlyCheck(TargetCheck):
         return format_html_join(mark_safe("<br />"), "{}", ((error,) for error in errors))
     
     @classmethod
-    def get_illegal_format_codes(target):
+    def get_illegal_format_codes(cls, target):
         for m in JAVA_MATCH.finditer(target.replace('%%', '')):
             if not ALLOWED_FORMAT_SPECIFIERS.fullmatch(m.group()):
                 yield m.group()
@@ -120,7 +120,7 @@ class MismatchedFormatSpecifiersCheck(TargetCheck):
         return format_html_join(mark_safe("<br />"), "{}", ((error,) for error in errors))
 
     @classmethod
-    def get_problems(source, target):
+    def get_problems(cls, source, target):
         source_style = IndexingStyle.get_style(source)
         target_style = IndexingStyle.get_style(target)
         if any(PercentSOnlyCheck.get_illegal_format_codes(source)) or source_style == IndexingStyle.INDEXED or source_style == IndexingStyle.MIXED:
