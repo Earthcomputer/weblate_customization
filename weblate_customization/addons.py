@@ -50,12 +50,16 @@ class JSONCustomizeAddonExt(JSONCustomizeAddon):
                         if i != 0:
                             result += ','
                             group_num = None
+                            regex_groups = None
                             for gn, group in enumerate(groups):
-                                if group.fullmatch(kv[i][0]):
+                                m = group.fullmatch(kv[i][0])
+                                if m is not None:
                                     group_num = gn
+                                    regex_groups = m.groups()
                                     break
                             if group_num is not None:
-                                if not group.fullmatch(kv[i - 1][0]):
+                                m = group.fullmatch(kv[i - 1][0])
+                                if m is None or m.groups() != regex_groups:
                                     result += '\n'
                         result += '\n' + indent
                         result += super().encode(kv[i][0]) + ': ' + super().encode(kv[i][1])

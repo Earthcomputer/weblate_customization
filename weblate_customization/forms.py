@@ -15,4 +15,10 @@ def validate_no_gap(value):
             raise forms.ValidationError(f'Invalid regex "{part}"')
 
 class JSONCustomizeFormExt(JSONCustomizeForm):
-    groups = forms.CharField(label='Groups', help_text='Semicolon-separated list of regexes of groups, within which to not add a gap', required=True, initial='.*', validators=[validate_no_gap])
+    groups = forms.CharField(
+        label='Groups', 
+        help_text='Semicolon-separated list of regexes of groups, within which to not add a gap. Capturing groups must be the same for there to be no gap', 
+        required=True, 
+        initial='.*', 
+        validators=[validate_no_gap]
+    )
