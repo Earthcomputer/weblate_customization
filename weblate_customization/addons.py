@@ -55,10 +55,14 @@ class JSONCustomizeAddonExt(JSONCustomizeAddon):
         groups = config.get('groups', '.*')
         groups = [try_compile(group.strip()) for group in groups.split(';')]
 
+        filter_empty = bool(int(config.get('filter_empty', 1)))
+
         class CustomJSONEncoder(JSONEncoder):
             def encode(self, obj):
                 if isinstance(obj, dict) and all((isinstance(x, str) for x in obj)) and all((isinstance(x, str) for x in obj.values())):
                     kv = list(obj.items())
+                    if filter_empty:
+                        kv = [x for x in kv if len(x[1]) > 0]
                     if sort_keys:
                         kv.sort()
 

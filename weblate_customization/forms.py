@@ -22,3 +22,9 @@ class JSONCustomizeFormExt(JSONCustomizeForm):
         initial='.*', 
         validators=[validate_no_gap]
     )
+    filter_empty = forms.BooleanField(
+        label='Filter empty translations',
+        help_text='Filters out untranslated strings (empty translations) from the output json file',
+        required=False,
+        initial=True
+    )
